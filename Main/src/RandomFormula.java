@@ -73,8 +73,11 @@ public class RandomFormula {
         while (length < operatorArr.length) {
             String op = operatorArr[length++];
             if (symbol.indexOf(op) > -1) {
-                if (opNumbers.size() == 2)
+                if (opNumbers.size() == 2) {
                     opNumbers.add(evaluation(opOperators, opNumbers));
+                    if (opNumbers.peek() > this.result_range || opNumbers.peek() < 0)
+                        return -1;
+                }
                 opOperators.add(op);
             } else {
                 opNumbers.add(Integer.parseInt(op));
